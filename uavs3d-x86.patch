@@ -1,0 +1,24 @@
+--- uavs3d-1.1/source/decore/sse/sse.h.orig	2020-07-04 06:13:58.000000000 +0200
++++ uavs3d-1.1/source/decore/sse/sse.h	2021-04-29 06:35:05.881365090 +0200
+@@ -45,11 +45,17 @@
+ 
+ #include "modules.h"
+ 
+-#ifdef _WIN32
++#if (defined(_WIN32) && !defined(_WIN64)) || defined(__i386__)
+ 
+-#ifndef _WIN64
+-#define _mm_extract_epi64(a, i) (a.m128i_i64[i])
+-#endif
++#include <stdint.h>
++static inline int64_t _mm_extract_epi64(__m128i a, const int imm8) {
++    return imm8 ? ((int64_t)_mm_extract_epi16(a, 7) << 48) |
++                      ((int64_t)_mm_extract_epi16(a, 6) << 32) |
++                      (_mm_extract_epi16(a, 5) << 16) | _mm_extract_epi16(a, 4)
++                : ((int64_t)_mm_extract_epi16(a, 3) << 48) |
++                      ((int64_t)_mm_extract_epi16(a, 2) << 32) |
++                      (_mm_extract_epi16(a, 1) << 16) | _mm_extract_epi16(a, 0);
++}
+ 
+ #endif
+ 
