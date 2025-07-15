@@ -37,7 +37,7 @@ Pliki nagłówkowe biblioteki uavs3d.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %{__sed} -i -e '/libdir/ s/"lib"/"%{_lib}"/' source/CMakeLists.txt
 
