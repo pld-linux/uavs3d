@@ -1,16 +1,17 @@
 Summary:	AVS3 decoder library
 Summary(pl.UTF-8):	Biblioteka dekodera AVS3
 Name:		uavs3d
-Version:	1.1
+Version:	1.2
 Release:	1
 License:	BSD
 Group:		Libraries
 #Source0Download: https://github.com/uavs3/uavs3d/releases
-Source0:	https://github.com/uavs3/uavs3d/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a22d9d4f1da4d1e2d0b19a25754505c3
+Source0:	https://github.com/uavs3/uavs3d/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	9007861d686f389eb8796c85e30bcf5f
 Patch0:		%{name}-x86.patch
 URL:		https://github.com/uavs3/uavs3d
-BuildRequires:	cmake >= 2.8
+BuildRequires:	cmake >= 3.1
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc COPYING README.md 
-%attr(755,root,root) %{_libdir}/libuavs3d.so
+%{_libdir}/libuavs3d.so
 
 %files devel
 %defattr(644,root,root,755)
