@@ -28,7 +28,7 @@ obsługujący profil AVS3-P2.
 Summary:	Header files for uavs3d library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki uavs3d
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Header files for uavs3d library.
